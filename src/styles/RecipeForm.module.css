@@ -1,0 +1,32 @@
+.RecipeForm {
+  margin: 2em 1em 2em 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+}
+
+input {
+  width: 50%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+textarea {
+  width: 50%;
+  margin-bottom: 1em;
+  outline: none;
+}
+
+button {
+  padding: 0.5em;
+  margin-right: 1em;
+}
+
+@media screen and (max-width: 600px)   {
+  input, textarea {
+    width: 98%;
+  }
+}

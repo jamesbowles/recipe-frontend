@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import styles from '../styles/RecipeForm.module.css'
+import { Link } from "react-router-dom";
 
 class NewRecipe extends React.Component {
 
@@ -28,26 +30,28 @@ class NewRecipe extends React.Component {
   render() {
     const { name, description, ingredients, method } = this.state
     return(
-      <div>
-        <h1>New Recipe</h1>
+      <div className={styles.RecipeForm}>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-          <input type="text" name="name" value={name} onChange={this.onChange} />
-          </label>
-          <label>
-            Description:
-          <input type="text" name="description" value={description} onChange={this.onChange} />
-          </label>
-          <label>
-            Ingredients:
-          <textarea name="ingredients" value={ingredients} onChange={this.onChange} />
-          </label>
-          <label>
-            Method:
-          <textarea name="method" value={method} onChange={this.onChange} />
-          </label>
-          <button type="submit">Save</button>
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" value={name} onChange={this.onChange} />
+          </div>
+          <div>
+            <label>Description:</label>
+            <input type="text" name="description" value={description} onChange={this.onChange} />
+          </div>
+          <div>
+            <label>Ingredients:</label>
+            <textarea name="ingredients" value={ingredients} rows="5" onChange={this.onChange} />
+          </div>
+          <div>
+            <label>Method:</label>
+            <textarea name="method" value={method} rows="10" onChange={this.onChange} />
+          </div>
+          <div>
+            <button type="submit">Save</button>
+            <Link to={`/`}>cancel</Link>
+          </div>
         </form>
       </div>
     )

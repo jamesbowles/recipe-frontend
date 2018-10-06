@@ -9,9 +9,10 @@ import NewRecipe from './components/NewRecipe'
 import EditRecipe from './components/EditRecipe'
 
 import styles from './styles/App.module.css'
+import homeStyles from './styles/Home.module.css'
 
 const Home = () => (
-  <div>
+  <div className={homeStyles.Home}>
     <Recipes />
     <Link to={`/recipes/new`}>New recipe</Link>
   </div>

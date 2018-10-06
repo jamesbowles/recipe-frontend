@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import styles from '../styles/Recipe.module.css'
 
 class Recipe extends Component {
   constructor(props) {
@@ -25,7 +26,7 @@ class Recipe extends Component {
       )
     }else{
       return (
-        <article>
+        <article className={styles.Recipe}>
           <h2>{recipe.name}</h2>
           <h3>Ingredients</h3>
           <ul>
@@ -36,9 +37,12 @@ class Recipe extends Component {
           }
         </ul>
           <h3>Method</h3>
-          <p>{recipe.method}</p>
-          <Link to={`/`}>All recipes</Link>
-          <Link to={`/recipes/edit/${recipe.id}`}>Edit recipe</Link>
+          {
+            recipe.method.split('\n').map((step, index) =>(
+              <p key={index}>{step}</p>
+            ))
+          }
+          <Link to={`/recipes/edit/${recipe.id}`}>Edit</Link>
         </article>
       )
     }

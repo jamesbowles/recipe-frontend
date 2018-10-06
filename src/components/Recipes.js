@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
+import styles from '../styles/Recipes.module.css'
 
 class Recipes extends Component {
   constructor(props) {
@@ -18,15 +19,17 @@ class Recipes extends Component {
 
   render() {
     return(
-      <ul>
+      <div className={styles.Recipes} >
         {
           this.state.recipes.map((recipe, index) => (
-            <li key={recipe.id}>
-              <Link to={`/recipes/show/${recipe.id}`}>{recipe.name}</Link>
-            </li>
+            <div key={recipe.id}>
+              <h2><Link to={`/recipes/show/${recipe.id}`}>{recipe.name}</Link></h2>
+              <p>{recipe.description}</p>
+
+            </div>
           ))
         }
-      </ul >
+      </div>
     )
   }
 }

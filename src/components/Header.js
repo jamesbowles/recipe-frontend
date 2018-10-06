@@ -1,9 +1,12 @@
 import React from 'react';
-import styles from '../styles/Header.module.css'
+import styles from '../styles/Header.module.scss'
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <div className={styles.Header}>
-    Recipes!
+    <Link to={`/`}>
+        Recipes!
+    </Link>
   </div>
 );
 
