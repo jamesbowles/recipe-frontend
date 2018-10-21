@@ -4,9 +4,9 @@ import history from "./history";
 
 export default class Auth {
   auth0 = new auth0.WebAuth({
-    domain: REACT_APP_AUTH0_DOMAIN,
-    clientID: REACT_APP_AUTH0_CLIENT_ID,
-    redirectUri: REACT_APP_AUTH0_CALLBACK,
+    domain: process.env.REACT_APP_AUTH0_DOMAIN,
+    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
+    redirectUri: process.env.REACT_APP_AUTH0_CALLBACK,
     responseType: 'token id_token',
     scope: 'openid'
   });
@@ -16,7 +16,7 @@ export default class Auth {
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
-    this.getAccessToken = this.getAccessToken.bind(this);
+    this.getIdToken = this.getIdToken.bind(this);
   }
 
   login() {
@@ -27,11 +27,9 @@ export default class Auth {
     return new Promise((resolve, reject) => {
       this.auth0.parseHash((err, authResult) => {
         if (authResult && authResult.accessToken && authResult.idToken) {
-          console.log(authResult);
           this.setSession(authResult);
           resolve(authResult);
         } else if (err) {
-          console.log(err);
           reject(err);
         }
       });
@@ -62,12 +60,12 @@ export default class Auth {
     return new Date().getTime() < expiresAt;
   }
 
-  getAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
-    if (!accessToken) {
-      throw new Error('No access token found');
+  getIdToken() {
+    const idToken = localStorage.getItem("id_token");
+    if (!idToken) {
+      throw new Error('No id token found');
     }
-    return accessToken;
+    return idToken;
   }
 
 

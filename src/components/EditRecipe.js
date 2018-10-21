@@ -19,7 +19,11 @@ class EditRecipe extends React.Component {
   }
   async componentDidMount() {
     const { match: { params } } = this.props;
-    const recipe = (await axios.get(`${ process.env.REACT_APP_API_HOST }/recipes/${params.recipeId}`)).data
+    const { getIdToken } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${getIdToken()}` }
+    const recipe = (
+      await axios.get(`${process.env.REACT_APP_API_HOST}/recipes/${params.recipeId}`, { headers })
+    ).data.Item
     this.setState({ recipe: recipe, loading: false })
   }
 
@@ -32,8 +36,10 @@ class EditRecipe extends React.Component {
   handleSubmit = event => {
     event.preventDefault()
     const { name, description, ingredients, method } = this.state.recipe;
+    const { getIdToken } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${getIdToken()}` }
     axios.put(`${process.env.REACT_APP_API_HOST}/recipes/${this.state.recipe.id}`, 
-      { name, description, ingredients, method }
+      { name, description, ingredients, method }, { headers: headers }
     ).then((result) => {
         this.props.history.push('/')
       })

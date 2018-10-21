@@ -12,8 +12,7 @@ class Recipes extends Component {
   async componentDidMount() {
     axios.get(`${process.env.REACT_APP_API_HOST}/recipes`)
     .then(response => {
-      console.table(response.data)
-      this.setState({ recipes: response.data })
+      this.setState({ recipes: response.data.Items })
     })
   }
 

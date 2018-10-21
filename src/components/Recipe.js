@@ -11,7 +11,7 @@ class Recipe extends Component {
 
   async componentDidMount() {
     const { match: { params } } = this.props;
-    const recipe = (await axios.get(`${process.env.REACT_APP_API_HOST}/recipes/${params.recipeId}`)).data
+    const recipe = (await axios.get(`${process.env.REACT_APP_API_HOST}/recipes/${params.recipeId}`)).data.Item
     this.setState({ recipe: recipe, loading: false })
   }
 

@@ -4,11 +4,10 @@ import Auth from '../utils/Auth'
 class Login extends React.Component {
   login = () => {
     const auth = new Auth();
-    auth.login(this.props.location.state.from.pathname);
+    auth.login();
   };
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <button onClick={this.login}>Log in</button>

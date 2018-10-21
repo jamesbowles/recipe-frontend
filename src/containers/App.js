@@ -36,7 +36,9 @@ const App = () => (
       <div className={styles.sidebar} />
       <div className={styles.content}>
         <Route exact={true} path="/" component={Home} />
-        <Route exact path="/recipes/new" component={NewRecipe} />
+        <Route exact path="/recipes/new" 
+          render={props => <NewRecipe auth={auth} {...props} />} 
+        />
         <Route path="/recipes/show/:recipeId" component={Recipe} />
         <PrivateRoute
           path="/recipes/edit/:recipeId"

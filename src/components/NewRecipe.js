@@ -20,11 +20,14 @@ class NewRecipe extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    console.log({ target: event.target })
-    axios.post(`${process.env.REACT_APP_API_HOST}/recipes`, this.state)
-      .then((result) => {
-        this.props.history.push('/')
+    const { getIdToken } = this.props.auth;
+    const headers = { 'Authorization': `Bearer ${getIdToken()}` }
+    axios.post(`${process.env.REACT_APP_API_HOST}/recipes`, this.state, {
+        headers: headers
       })
+      .then(result => {
+        this.props.history.push("/");
+      });
   }
 
   render() {
